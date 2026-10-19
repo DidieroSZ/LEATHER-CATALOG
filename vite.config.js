@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 export default defineConfig({
-    base: '/CPM-CLONE/',
+    base: '/LEATHER-CATALOG/',
     build: {
         outDir: 'dist',
     },
