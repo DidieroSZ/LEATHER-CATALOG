@@ -1,28 +1,21 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fugaz+One&family=Kedebideri:wght@400;500;600;700;800;900&display=swap'); */
-
 :root { 
-    --N300:#111;
-    --N200:#1d1c20; 
-    --N100:#2f2e32; 
+    --N100:#111;
+    --B100:#fff; 
 
-    --V400:#003b2d; 
-    --V300:#008131; 
-    --V200:#4daa37; 
-    --V100:#c7e600; 
-    --V50: #e9f0e4;
+    --C100: #F5EFE8; 
+    --C200: #E8D7BF; 
+    --C300: #D0AA7F; 
+    --C400: #BA9D7F; 
+    --C500: #7A5336; 
+    --C600: #73563E;
+    --C700: #4F2E19; 
+    --C800: #2E1E13; 
+    --C900: #21180F; 
 
-    --Gris: #7f887e;
-    --Blanco:#fff; 
-    --B100:rgba(255, 255, 255, .78);
-
-    --Paper:#f5f7f1; 
-
-    
     --Pad8:8px; 
     --Pad16:16px; 
     --Pad32:32px; 
 }
-
 
 * { 
     margin:0; 
@@ -34,9 +27,7 @@ html {
 } 
 body { 
     margin:0; 
-    font-family: 'Kedebideri',sans-serif; 
     font-size: var(--Pad16); 
-    background: var(--Paper); 
     overflow-x: hidden;
 } 
 

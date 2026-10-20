@@ -8,11 +8,10 @@ import innerStyles from './nav-component.css?inline';
 
 /* --- ICONS --- */
 import { hydrateIcons } from '../../utils/icons.js';
-import { animatePage } from '../../utils/animations.js';
 /* --- ICONS --- */
 
 /* --- ASSETS --- */
-import logo from '../../assets/CPM/cpm-logo.png';
+import logo from '../../assets/CasaLoram.png';
 /* --- ASSETS --- */
 
 export class NavComponent extends LitElement {
@@ -54,47 +53,22 @@ export class NavComponent extends LitElement {
         
     render() {
         return html`
-            <nav class="site-nav-container d-flexx d-row" aria-label="Navegación principal">
-
-                <a class="brand" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
-                    <img src=${logo} alt="Caja Popular Mexicana">
-                    <span>CARRERA CPM<strong>75 AÑOS</strong></span>
-                </a>
-                <div class="desktop-nav d-flexx d-row">
-                    <a href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>Inicio</a>
-                    <a href="#Carrera" data-target="Carrera" @click=${this.handleNavigation}>La carrera</a>
-                    <a href="#Convocatoria" data-target="Convocatoria" @click=${this.handleNavigation}>Convocatoria</a>
-                    <a href="#Distancias" data-target="Distancias" @click=${this.handleNavigation}>Distancias</a>
-                    <a href="#Kit" data-target="Kit" @click=${this.handleNavigation}>Kit de Corredor</a>
-                    <a href="#Registro" data-target="Registro" @click=${this.handleNavigation}>Registro</a>
-                    <a href="#Premiacion" data-target="Premiacion" @click=${this.handleNavigation}>Premiación</a>
-                    <a href="#FAQS" data-target="FAQS" @click=${this.handleNavigation}>Faq´s</a>
+            <nav class="nav--container d-flexx d-row" aria-label="Navegación principal">
+                <div class="inner--shell grid--nav">
+                    <div class="item--nav">
+                        <a class="brand" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
+                            <img src="${logo}" alt="Logo Casa Loram">
+                            <p>Casa Loram</p>
+                        </a>
+                    </div>
+                    <div class="item--nav large--item">dd</div>
+                    <div class="item--nav">
+                        <button class="btn-cta">¡Escribenos!</button>
+                    </div>
                 </div>
-                <a class="button button-lime header-cta" href="#Registro" data-target="Registro" @click=${this.handleNavigation}>
-                    Regístrate <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-                </a>
-                    
-                <button
-                    class="menu-link"
-                    type="button"
-                    @click=${this.toggleMenu}
-                    aria-label="Abrir menú de navegación"
-                    aria-controls="mobile-navigation"
-                    aria-expanded=${this.menuOpen}
-                >
-                    <i data-lucide=${this.menuOpen ? 'x' : 'menu'} aria-hidden="true"></i>
-                </button>
-
-                <div id="mobile-navigation" class=${this.menuOpen ? 'mobile-menu is-open' : 'mobile-menu'} role="navigation" aria-label="Navegación móvil">
-                    <a href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>Inicio</a>
-                    <a href="#Carrera" data-target="Carrera" @click=${this.handleNavigation}>La carrera</a>
-                    <a href="#Convocatoria" data-target="Convocatoria" @click=${this.handleNavigation}>Convocatoria</a>
-                    <a href="#Distancias" data-target="Distancias" @click=${this.handleNavigation}>Distancias</a>
-                    <a href="#Kit" data-target="Kit" @click=${this.handleNavigation}>Kit de corredor</a>
-                    <a href="#Registro" data-target="Registro" @click=${this.handleNavigation}>Registro</a>
-                    <a href="#Premiacion" data-target="Premiacion" @click=${this.handleNavigation}>Premiación</a>
-                    <a href="#FAQS" data-target="FAQS" @click=${this.handleNavigation}>FAQ's</a>
-                </div>
+                
+                
+                
 
             </nav>
         `;

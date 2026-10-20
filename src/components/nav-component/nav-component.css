@@ -1,3 +1,78 @@
+
+.nav--container{
+    width: 100%;
+    background-color: var(--C100);
+    color: var(--C700);
+    padding: var(--Pad16);
+}
+    .inner--shell{
+        width: 100%;
+        max-width: 1520px;
+    }
+    .grid--nav{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(50px, 1fr));
+
+    }
+        .item--nav{
+            
+        }
+            .brand{
+                display: inline-flex;
+                align-items: center;
+                gap: var(--Pad16);
+                text-decoration: none;
+                height: 40px;
+                width: auto;
+                overflow: hidden;
+            }  
+                .brand img {
+                    width:  auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+                .brand p {
+                    width: auto;
+                    color: var(--C700);
+                    font-size: 25px;
+                    font-weight: bold;
+                }
+
+        .large--item{
+            grid-column: span 2;
+            background-color: var(--N100);
+        }
+            .btn-cta{
+                width: fit-content;
+                height: 100%;
+                max-height: 40px;
+                border-radius: var(--Pad8);
+                padding: 0 var(--Pad16);
+                border: 0;
+                background-color: var(--C700);
+                color: var(--C100);
+                font-size: var(--Pad16);
+                cursor: pointer;
+                transition: all 0.3s;
+                /* font-weight: 500; */
+            }
+                .btn-cta:hover{
+                    transform: translateY(-3px);
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .site-header, .site-nav-container{
     position: fixed;
     z-index: 10;
@@ -16,7 +91,7 @@
     backdrop-filter: blur(4px);
     border: solid 1px var(--V400);
 }
-    .brand {
+   /*  .brand {
         display: inline-flex;
         align-items: center;
         gap: 11px;
@@ -36,7 +111,7 @@
             color: var(--V100);
             font-size: 10px;
             letter-spacing: .18em;
-        }
+        } */
 
     .desktop-nav {
         gap: 20px;
