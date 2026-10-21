@@ -1,0 +1,17 @@
+.header--container{
+    width: 100%;
+    height: 100dvh;
+    background-color: red;
+    padding: var(--Pad32);
+
+
+    background-image: url('../../assets/landscape.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    .cta--container{
+        width: 600px;
+        height: auto;
+        background-color: black;
+    }

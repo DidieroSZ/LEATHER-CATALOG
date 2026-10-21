@@ -11,7 +11,7 @@ import '../../components/nav-component/nav-component.js';
 /* --- COMPONENTS --- */
 
 /* --- VIEWS --- */
-/* import '../../views/header-view/header-view.js'; */
+import '../../views/header-view/header-view.js';
 /* --- VIEWS --- */
 
 

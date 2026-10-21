@@ -55,21 +55,35 @@ export class NavComponent extends LitElement {
         return html`
             <nav class="nav--container d-flexx d-row" aria-label="Navegación principal">
                 <div class="inner--shell grid--nav">
-                    <div class="item--nav">
+
+                    <div class="item--nav large--item d-flexx d-row">
+                        <button class="btn-gen">Inicio</button>
+                        <button class="btn-gen btn-sec">Productos</button>
+                        <button class="btn-gen btn-sec">Pieles</button>
+                        <button class="btn-gen btn-sec">Marcas</button>
+                        <button class="btn-gen btn-sec">Contacto</button>
+                    </div>
+
+                    <div class="item--nav center--item">
+                    
                         <a class="brand" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
                             <img src="${logo}" alt="Logo Casa Loram">
-                            <p>Casa Loram</p>
                         </a>
+                    
+                    <!-- 
+                        <a class="brand d-flexx" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
+                            <p class="logo--text font--cursiva">C L</p>
+                        </a>
+                        -->
                     </div>
-                    <div class="item--nav large--item">dd</div>
-                    <div class="item--nav">
-                        <button class="btn-cta">¡Escribenos!</button>
-                    </div>
-                </div>
-                
-                
-                
 
+                    <div class="item--nav rigth--item d-flexx">
+                        <p class="font--normal">479-103-1689</p>
+                        <button class="btn-gen btn-cta">Catálogo</button>
+                    </div>
+                    
+                </div>
+            
             </nav>
         `;
     };

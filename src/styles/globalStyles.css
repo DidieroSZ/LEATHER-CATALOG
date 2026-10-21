@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Fondamento:ital@0;1&family=Mrs+Saint+Delafield&display=swap');
+
 :root { 
     --N100:#111;
     --B100:#fff; 
@@ -6,7 +9,7 @@
     --C200: #E8D7BF; 
     --C300: #D0AA7F; 
     --C400: #BA9D7F; 
-    --C500: #7A5336; 
+
     --C600: #73563E;
     --C700: #4F2E19; 
     --C800: #2E1E13; 
@@ -32,7 +35,7 @@ body {
 } 
 
 /** FONTS  */
-@font-face {
+/* @font-face {
     font-family: 'AlfaSlabOne';
     src: url('../assets/FONTS/Alfa_Slab_One/AlfaSlabOne-Regular.ttf') format('truetype');
     font-weight: 400;
@@ -54,9 +57,27 @@ body {
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+} */
+
+.font--cursiva {
+    font-family: "Mrs Saint Delafield", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.font--text  {
+    font-family: "Fondamento", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.titulo01{
+.font--normal  {
+    font-family: "Commissioner", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* .titulo01{
     font-family: 'AlfaSlabOne', sans-serif;
     text-transform: uppercase;
     line-height: .98;
@@ -95,7 +116,7 @@ h1 em, h2 em {
     text-transform: uppercase;
     font-size: 10px;
     letter-spacing: .13em;
-}
+} */
 /** FONTS  */
 
 /** GENERAL STYLES  */
@@ -115,7 +136,10 @@ h1 em, h2 em {
     width: min(1180px, calc(100% - 96px));
     margin: 0 auto;
 }
-
+.inner--shell{
+    width: 100%;
+    max-width: 1520px;
+}
 section,
 header,
 footer {
@@ -125,6 +149,67 @@ footer {
 
 
 /** BUTTONS */
+
+.btn-gen{
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: fit-content;
+    height: 100%;
+    max-height: 40px;
+
+    border-radius: var(--Pad32);
+    corner-shape: squircle;
+    padding: 0 var(--Pad16);
+    border: none;
+    background-color: var(--C700);
+    border: 2px solid var(--C700);
+    cursor: pointer;
+    transition: transform .25s;
+
+    text-transform: uppercase;
+    color: var(--C100);
+    font-size: var(--Pad16);
+    font-family: "Commissioner", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1cap;
+}
+    .btn-gen::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: var(--C800);
+
+        clip-path: circle(0% at 0% 0%);
+        transition: clip-path 250ms ease-out;
+    }
+        .btn-gen:hover::before {
+            clip-path: circle(150% at 0% 0%);
+        }
+    .btn-gen:hover{
+        transform: translateY(-3px);
+    }
+
+.btn-cta{
+    background-color: var(--C800);
+    border: 2px solid var(--C800);
+    color: var(--C100);
+}
+    .btn-cta:hover{
+        transform: translateY(-3px);
+    }
+.btn-sec{
+    background-color: transparent;
+    border: 2px solid var(--C700);
+    color: var(--C700);
+}
+    .btn-cta:hover{
+        transform: translateY(-3px);
+    }
+
+
 .button {
     display: inline-flex;
     align-items: center;
