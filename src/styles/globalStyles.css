@@ -1,5 +1,7 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Fondamento:ital@0;1&family=Mrs+Saint+Delafield&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ultra&display=swap');
+
 
 :root { 
     --N100:#111;
@@ -35,88 +37,29 @@ body {
 } 
 
 /** FONTS  */
-/* @font-face {
-    font-family: 'AlfaSlabOne';
-    src: url('../assets/FONTS/Alfa_Slab_One/AlfaSlabOne-Regular.ttf') format('truetype');
+.font--bold {
+    font-family: "Ultra", serif;
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
 }
-
-@font-face {
-    font-family: 'Fugaz One';
-    src: url('../assets/FONTS/Fugaz_One/FugazOne-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Kedebideri';
-    src: url('../assets/FONTS/Kedebideri/Kedebideri-Medium.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-} */
 
 .font--cursiva {
-    font-family: "Mrs Saint Delafield", cursive;
+    font-family: "Monsieur La Doulaise", cursive;
     font-weight: 400;
     font-style: normal;
 }
 .font--text  {
-    font-family: "Fondamento", cursive;
+    font-family: "Prompt", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 
 .font--normal  {
-    font-family: "Commissioner", sans-serif;
-    font-optical-sizing: auto;
+    font-family: "Prompt", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 
-/* .titulo01{
-    font-family: 'AlfaSlabOne', sans-serif;
-    text-transform: uppercase;
-    line-height: .98;
-    letter-spacing: -.025em;
-    font-size: clamp(3.4rem, 7vw, 6.5rem);
-    max-width: 750px;
-}
-.titulo02{
-    font-size: clamp(2.7rem, 5vw, 5.4rem);
-    font-family: 'AlfaSlabOne', serif;
-    text-transform: uppercase;
-    font-weight: 400;
-    line-height: .98;
-    letter-spacing: -.025em;
-}
-h1 em, h2 em {
-    color: var(--V100);
-    font-style: normal;
-}
-.titulo03{
-    font-family: 'AlfaSlabOne', sans-serif;
-    font-size: clamp(1.7rem, 3vw, 3rem);
-    text-transform: uppercase;
-    font-weight: 400;
-    line-height: .98;
-    letter-spacing: -.025em;
-}
-
-.texto{
-    color: var(--Blanco);
-    font-size: var(--Pad16);
-}
-
-.notas{
-    color: rgba(255, 255, 255, .58);
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: .13em;
-} */
 /** FONTS  */
 
 /** GENERAL STYLES  */
@@ -156,11 +99,10 @@ footer {
     overflow: hidden;
     width: fit-content;
     height: 100%;
-    max-height: 40px;
+    min-height: 40px;
 
-    border-radius: var(--Pad32);
-    corner-shape: squircle;
-    padding: 0 var(--Pad16);
+    border-radius: var(--Pad8);
+    padding: var(--Pad8) var(--Pad16);
     border: none;
     background-color: var(--C700);
     border: 2px solid var(--C700);
@@ -208,36 +150,4 @@ footer {
     .btn-cta:hover{
         transform: translateY(-3px);
     }
-
-
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--Pad8);
-    border-radius: var(--Pad32);
-    padding: 14px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: .08em;
-    transition: transform .25s, background .25s;
-    cursor: pointer;
-    background-color: var(--V100);
-    color: var(--N300);
-}
-    .button:hover {
-        transform: translateY(-3px);
-    }
-    .button svg,
-    .text-link svg {
-        width: 15px;
-        height: auto;
-        aspect-ratio: 1/1;
-    }
-.button-secundario {
-    background-color: var(--Blanco);
-    color: var(--N300);
-}
 /** BUTTONS */

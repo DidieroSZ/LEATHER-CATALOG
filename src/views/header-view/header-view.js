@@ -24,12 +24,12 @@ export class HeaderView extends LitElement {
     render() {
         return html`
             <header class="header--container d-flexx d-row">
-                <div class="inner--shell grid--nav">
+                <div class="inner--shell">
 
-                    <div class="cta--container">
-                        <h1>Estilo que <br>se hereda</h1>
+                    <div class="cta--container d-flexx d-col">
+                        <h1 class="font--bold ">Estilo que se hereda.</h1>
                         <p>Piel exótica y tradición vaquera.</p>
-                        <button class="btn-cta">Catálogo</button>
+                        <button class="btn-gen btn-cta">Explorar el catálogo</button>
                     </div>
 
                 </div>

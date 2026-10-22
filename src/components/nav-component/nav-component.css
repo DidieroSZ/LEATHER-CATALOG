@@ -45,9 +45,7 @@
             justify-content: end;
         }
 
-
-
-
+/* 
 .site-header, .site-nav-container{
     position: fixed;
     z-index: 10;
@@ -65,4 +63,4 @@
     background-color: rgba(0, 59, 45, 0.700);
     backdrop-filter: blur(4px);
     border: solid 1px var(--V400);
-}
+} */
