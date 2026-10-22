@@ -1,40 +1,38 @@
 import { LitElement, css, html } from "lit";
-import { unsafeCSS } from 'lit';
-
-/* --- STYLES --- */
-import generalStyles from '../../styles/globalStyles.css?inline';
-import innerStyles from './header-view.css?inline';
-/* --- STYLES --- */
-
-/* --- ICONS --- */
-import { hydrateIcons } from '../../utils/icons.js';
-/* --- ICONS --- */
-
-/* --- ASSETS --- */
-import logo from '../../assets/CasaLoram.png';
-/* --- ASSETS --- */
+import { unsafeCSS } from "lit";
+import { gsap } from "gsap";
+import styles from "./header-view.css?inline";
+import hero from "../../assets/landscape.png";
 
 export class HeaderView extends LitElement {
-
     static styles = [
-        css`${unsafeCSS(generalStyles)}`,
-        css`${unsafeCSS(innerStyles)}`,
+        css`
+      ${unsafeCSS(styles)}
+    `,
     ];
-        
+    firstUpdated() {
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+            gsap.from(this.renderRoot.querySelectorAll(".hero-copy > *"), {
+                opacity: 0,
+                y: 28,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: "power3.out",
+            });
+    }
     render() {
         return html`
-            <header class="header--container d-flexx d-row">
-                <div class="inner--shell">
-
-                    <div class="cta--container d-flexx d-col">
-                        <h1 class="font--bold ">Estilo que se hereda.</h1>
-                        <p>Piel exótica y tradición vaquera.</p>
-                        <button class="btn-gen btn-cta">Explorar el catálogo</button>
-                    </div>
-
-                </div>
-            </header>
+        <header id="inicio" class="hero">
+            <img src="${hero}" alt="Paisaje desértico al atardecer" />
+            <div class="shade"></div>
+            <div class="hero-copy">
+                <p>CASA LORAM · HECHO PARA DURAR</p>
+                <h1>Estilo que<br />se hereda</h1>
+                <span>Piel exótica y tradición vaquera.</span
+                ><a href="#catalogo">Explorar el catálogo <b>→</b></a>
+            </div>
+        </header>
         `;
-    };
+    }
 }
-customElements.define('header-view', HeaderView);
+customElements.define("header-view", HeaderView);

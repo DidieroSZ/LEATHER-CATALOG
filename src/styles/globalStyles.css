@@ -34,7 +34,12 @@ body {
     margin:0; 
     font-size: var(--Pad16); 
     overflow-x: hidden;
+    background:#fffaf3;
+    color:#392416;
 } 
+html { scroll-behavior:smooth; }
+::selection { background:#7d4b2b; color:#fffaf3; }
+*:focus-visible { outline:2px solid #a76d3f; outline-offset:3px; }
 
 /** FONTS  */
 .font--bold {
