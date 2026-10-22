@@ -25,13 +25,16 @@ export class HomePage extends LitElement {
 
     render() {
         return html`
-            <main id="contenido-principal">
+            <main id="contenido-principal" @navigate-section=${this.handleSectionNavigation}>
                 <nav-component></nav-component>
-                <header-view id="Inicio"></header-view>
-                <catalog-view></catalog-view>
+                <header-view id="inicio"></header-view>
+                <catalog-view id="catalogo"></catalog-view>
                 <heritage-view></heritage-view>
             </main>
         `;
+    }
+    handleSectionNavigation(event) {
+        this.renderRoot.querySelector('nav-component')?.navigateTo(event.detail.id);
     }
 }
 customElements.define('home-page', HomePage);

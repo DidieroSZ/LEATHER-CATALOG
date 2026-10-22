@@ -20,6 +20,10 @@ export class HeaderView extends LitElement {
                 ease: "power3.out",
             });
     }
+    requestNavigation(event, id) {
+        event.preventDefault();
+        this.dispatchEvent(new CustomEvent('navigate-section', { detail: { id }, bubbles: true, composed: true }));
+    }
     render() {
         return html`
         <header id="inicio" class="hero">
@@ -29,7 +33,7 @@ export class HeaderView extends LitElement {
                 <p>CASA LORAM · HECHO PARA DURAR</p>
                 <h1>Estilo que<br />se hereda</h1>
                 <span>Piel exótica y tradición vaquera.</span
-                ><a href="#catalogo">Explorar el catálogo <b>→</b></a>
+                ><a href="#catalogo" @click=${(event) => this.requestNavigation(event, 'catalogo')}>Explorar el catálogo <b>→</b></a>
             </div>
         </header>
         `;

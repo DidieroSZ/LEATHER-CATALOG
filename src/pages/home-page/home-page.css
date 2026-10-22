@@ -1,1 +1,2 @@
-main { overflow: hidden; background: #fffaf3; }
+main { background: #fffaf3; }
+header-view, catalog-view, heritage-view { display: block; scroll-margin-top: 86px; }
