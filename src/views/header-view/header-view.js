@@ -6,9 +6,7 @@ import hero from "../../assets/landscape.png";
 
 export class HeaderView extends LitElement {
     static styles = [
-        css`
-      ${unsafeCSS(styles)}
-    `,
+        css`${unsafeCSS(styles)}`,
     ];
     firstUpdated() {
         if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
