@@ -15,6 +15,10 @@ import categoryBoots from "../assets/propuesta_1/02_categoria_botas.png";
 import categoryBooties from "../assets/propuesta_1/03_categoria_botines.png";
 import categoryHats from "../assets/propuesta_1/04_categoria_sombreros.png";
 import categoryBelts from "../assets/propuesta_1/05_categoria_cinturones.png";
+import skinCrocodile from "../assets/propuesta_1/01_piel_cocodrilo.png";
+import skinOstrich from "../assets/propuesta_1/02_piel_avestruz.png";
+import skinPython from "../assets/propuesta_1/04_piel_piton.png";
+import skinNovillo from "../assets/propuesta_1/05_piel_novillo_grabado.png";
 
 export const skins = [
   { id: "cocodrilo", name: "Cocodrilo" },
@@ -260,3 +264,29 @@ export const products = [
 
 export const getImage = (id) => images.find((image) => image.id === id);
 export const getSkin = (id) => skins.find((skin) => skin.id === id);
+
+export const skinExplorerCategories = [
+  { id: "exoticas", name: "Pieles exóticas", description: "Texturas naturales de presencia singular.", skinIds: ["cocodrilo", "avestruz", "piton"], order: 1, active: true },
+  { id: "bovinas", name: "Pieles bovinas", description: "Materiales clásicos elegidos para la colección.", skinIds: ["ternera", "novillo"], order: 2, active: true },
+  { id: "especiales", name: "Acabados especiales", description: "Denominaciones comerciales y acabados de la casa.", skinIds: ["palmilla"], order: 3, active: true },
+];
+
+export const skinExplorerImages = [
+  { id: "skin-cocodrilo", src: skinCrocodile, alt: "Textura de piel de cocodrilo", skinId: "cocodrilo", role: "texture" },
+  { id: "skin-avestruz", src: skinOstrich, alt: "Textura de piel de avestruz", skinId: "avestruz", role: "texture" },
+  { id: "skin-piton", src: skinPython, alt: "Textura de piel de pitón", skinId: "piton", role: "texture" },
+  { id: "skin-ternera", src: bootieLeather, alt: "Botín de ternera de la colección", skinId: "ternera", role: "editorial" },
+  { id: "skin-novillo", src: skinNovillo, alt: "Piel de novillo con grabado", skinId: "novillo", role: "texture" },
+  { id: "skin-palmilla", src: texanaPalmilla, alt: "Texana de palmilla de la colección", skinId: "palmilla", role: "editorial" },
+];
+
+const generalCare = { cleaning: "Información específica pendiente de validación del proveedor.", storage: "Conservar en un entorno seco y ventilado.", precaution: "Consultar al fabricante antes de aplicar productos." };
+export const skinExplorerDetails = {
+  cocodrilo: { materialType: "Reptil", description: "Una textura de escamas definidas, seleccionada por su presencia visual en piezas de carácter.", characteristics: ["Textura natural distintiva", "Uso demostrativo en botas y cinturones"], care: generalCare },
+  avestruz: { materialType: "Ave", description: "El relieve característico aporta una lectura táctil y cálida a la silueta de cada pieza.", characteristics: ["Relieve natural reconocible", "Acabado demostrativo en calzado"], care: { ...generalCare, storage: "Evitar la humedad prolongada." } },
+  piton: { materialType: "Reptil", description: "Una superficie de patrón natural que aporta contraste y una expresión singular a la colección.", characteristics: ["Patrón natural variable", "Presencia visual marcada"], care: { ...generalCare, storage: "Guardar alejada del sol directo." } },
+  ternera: { materialType: "Piel bovina", description: "Una piel bovina de apariencia lisa, presente en líneas de botines y sombreros de la colección.", characteristics: ["Acabado demostrativo de apariencia lisa", "Uso en siluetas de línea clásica"], care: generalCare },
+  novillo: { materialType: "Piel bovina", description: "El novillo aparece en la colección con un lenguaje cálido y acabados que priorizan la textura.", characteristics: ["Base bovina", "Acabados comerciales por validar"], care: { ...generalCare, storage: "Evitar fuentes directas de calor." } },
+  palmilla: { materialType: "Acabado comercial", description: "Palmilla se presenta como una denominación comercial de la colección; su composición debe confirmarse con el proveedor.", characteristics: ["Denominación comercial", "Aplicación demostrativa en texanas y sombreros"], care: { cleaning: "Consultar las indicaciones del fabricante.", storage: "Guardar en un sitio seco y protegido.", precaution: "No aplicar tratamientos sin confirmar el material base." } },
+};
+export const getSkinExplorerImage = (skinId) => skinExplorerImages.find((image) => image.skinId === skinId);

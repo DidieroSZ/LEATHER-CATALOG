@@ -1,0 +1,21 @@
+import { LitElement, css, html } from "lit";
+import { unsafeCSS } from "lit";
+import { gsap } from "gsap";
+import styles from "./skin-explorer.css?inline";
+import { getSkin, getSkinExplorerImage, products, skinExplorerCategories, skinExplorerDetails } from "../../data/catalog-data.js";
+
+export class SkinExplorer extends LitElement {
+  static properties = { activeCategoryId: { type: String }, activeSkinId: { type: String } };
+  static styles = [css`${unsafeCSS(styles)}`];
+  constructor() { super(); this.activeCategoryId = skinExplorerCategories[0].id; this.activeSkinId = skinExplorerCategories[0].skinIds[0]; }
+  get activeCategory() { return skinExplorerCategories.find(({ id }) => id === this.activeCategoryId); }
+  get visibleSkinIds() { return this.activeCategory?.skinIds ?? []; }
+  get selectedSkin() { return getSkin(this.activeSkinId); }
+  get selectedDetails() { return skinExplorerDetails[this.activeSkinId]; }
+  selectCategory(id) { const category = skinExplorerCategories.find((item) => item.id === id); this.activeCategoryId = id; this.activeSkinId = category.skinIds[0]; this.animatePanel(); }
+  selectSkin(id) { this.activeSkinId = id; this.animatePanel(); }
+  animatePanel() { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) gsap.fromTo(this.renderRoot.querySelectorAll(".info, .skin-card"), { opacity: .38 }, { opacity: 1, duration: .3, stagger: .035, ease: "power2.out", overwrite: true }); }
+  handleTabKey(event, index) { if (event.key === "ArrowDown" || event.key === "ArrowRight") { event.preventDefault(); this.selectCategory(skinExplorerCategories[(index + 1) % skinExplorerCategories.length].id); this.updateComplete.then(() => this.renderRoot.querySelector(`[data-category="${this.activeCategoryId}"]`)?.focus()); } if (event.key === "ArrowUp" || event.key === "ArrowLeft") { event.preventDefault(); this.selectCategory(skinExplorerCategories[(index - 1 + skinExplorerCategories.length) % skinExplorerCategories.length].id); this.updateComplete.then(() => this.renderRoot.querySelector(`[data-category="${this.activeCategoryId}"]`)?.focus()); } }
+  render() { const related = products.filter((product) => product.skinId === this.activeSkinId); return html`<section class="explorer" aria-labelledby="pieles-titulo"><header><p>Texturas que cuentan historias</p><h2 id="pieles-titulo">Pieles de lujo</h2></header><div class="layout"><nav class="tabs" role="tablist" aria-label="Categorías de piel"><div class="tab-copy"><span>Explorar</span><p>${this.activeCategory.description}</p></div>${skinExplorerCategories.map((category, index) => html`<button role="tab" data-category=${category.id} aria-selected=${category.id === this.activeCategoryId} tabindex=${category.id === this.activeCategoryId ? 0 : -1} @click=${() => this.selectCategory(category.id)} @keydown=${(event) => this.handleTabKey(event, index)}>${category.name}</button>`)}</nav><article class="info"><img src="${getSkinExplorerImage(this.activeSkinId)?.src}" alt="${getSkinExplorerImage(this.activeSkinId)?.alt}"/><div class="info-copy"><span class="index">${this.selectedDetails.materialType}</span><h3>${this.selectedSkin.name}</h3><p>${this.selectedDetails.description}</p><dl><dt>Características</dt>${this.selectedDetails.characteristics.map((item) => html`<dd>${item}</dd>`)}</dl><div class="care"><h4>Cuidados generales</h4><p><b>Limpieza:</b> ${this.selectedDetails.care.cleaning}</p><p><b>Almacenamiento:</b> ${this.selectedDetails.care.storage}</p><p><b>Precaución:</b> ${this.selectedDetails.care.precaution}</p></div>${related.length ? html`<small>${related.length} ${related.length === 1 ? "pieza relacionada" : "piezas relacionadas"} en el catálogo</small>` : ""}</div></article><div class="gallery" aria-label="Pieles disponibles">${this.visibleSkinIds.map((id) => { const skin = getSkin(id); const image = getSkinExplorerImage(id); return html`<button class="skin-card ${id === this.activeSkinId ? "selected" : ""}" @click=${() => this.selectSkin(id)} aria-pressed=${id === this.activeSkinId}><img src="${image?.src}" alt="${image?.alt}" loading="lazy"/><span>${skin?.name}</span><small>${skinExplorerDetails[id]?.materialType}</small></button>`; })}</div></div></section>`; }
+}
+customElements.define("skin-explorer", SkinExplorer);
