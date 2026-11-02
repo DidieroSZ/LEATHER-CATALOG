@@ -7,8 +7,10 @@ const steps = [
   { id: 'inicio', number: '01', label: 'Explora', name: 'Inicio' },
   { id: 'catalogo', number: '02', label: 'Selecciona', name: 'Catálogo' },
   { id: 'pieles', number: '03', label: 'Conoce', name: 'Pieles' },
-  { id: 'marcas', number: '04', label: 'Descubre', name: 'Marcas' },
-  { id: 'contacto', number: '05', label: 'Conecta', name: 'Contacto' },
+  { id: 'historia', number: '04', label: 'Conoce', name: 'Historia' },
+  { id: 'marcas', number: '05', label: 'Descubre', name: 'Marcas' },
+  { id: 'contacto', number: '06', label: 'Conecta', name: 'Contacto' },
+  { id: 'nosotros', number: '07', label: 'Identidad', name: 'Nosotros' },
 ];
 
 export class NavComponent extends LitElement {
@@ -40,7 +42,17 @@ export class NavComponent extends LitElement {
     window.removeEventListener('touchstart', this.cancelPendingNavigation);
     super.disconnectedCallback();
   }
-  getSection(id) { const pageRoot = this.getRootNode(); if (id === 'inicio' || id === 'catalogo') return pageRoot.querySelector(`#${id}`); return pageRoot.querySelector('heritage-view')?.shadowRoot?.querySelector(`#${id}`); }
+  getSection(id) {
+    const pageRoot = this.getRootNode();
+    if (id === 'inicio' || id === 'catalogo') return pageRoot.querySelector(`#${id}`);
+
+    const heritageRoot = pageRoot.querySelector('heritage-view')?.shadowRoot;
+    if (id === 'nosotros') {
+      return heritageRoot?.querySelector('footer-component')?.shadowRoot?.querySelector(`#${id}`);
+    }
+
+    return heritageRoot?.querySelector(`#${id}`);
+  }
   connectSectionObserver() {
     const sections = steps.map(({ id }) => this.getSection(id)).filter(Boolean);
     if (sections.length !== steps.length) {

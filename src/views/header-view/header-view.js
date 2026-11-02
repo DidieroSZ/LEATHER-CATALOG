@@ -3,7 +3,7 @@ import { unsafeCSS } from "lit";
 import { gsap } from "gsap";
 import styles from "./header-view.css?inline";
 import generalStyles from "../../styles/globalStyles.css?inline";
-import hero from "../../assets/landscape.png";
+import hero from "../../assets/landscape.jpg";
 
 export class HeaderView extends LitElement {
     static styles = [

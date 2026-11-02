@@ -103,6 +103,7 @@ export class CatalogView extends LitElement {
           (option) =>
             html`<button
               class=${activeId === option.id ? "active" : ""}
+              aria-pressed=${activeId === option.id}
               @click=${() => this.updateFilters(key, option.id)}
             >
               ${option.name}
