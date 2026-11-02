@@ -20,6 +20,31 @@
     --Pad8:8px; 
     --Pad16:16px; 
     --Pad32:32px; 
+
+    /* Semantic palette shared by document and Lit shadow roots. */
+    --color-ink: #392416;
+    --color-ink-soft: #684a33;
+    --color-ink-deep: #21170f;
+    --color-paper: #fffaf3;
+    --color-paper-soft: #f8f1e7;
+    --color-paper-card: #f2e6d4;
+    --color-leather: #3a2518;
+    --color-leather-light: #9a704d;
+    --color-leather-accent: #cba77d;
+    --color-border: #e0ceb8;
+}
+
+:host {
+    --color-ink: #392416;
+    --color-ink-soft: #684a33;
+    --color-ink-deep: #21170f;
+    --color-paper: #fffaf3;
+    --color-paper-soft: #f8f1e7;
+    --color-paper-card: #f2e6d4;
+    --color-leather: #3a2518;
+    --color-leather-light: #9a704d;
+    --color-leather-accent: #cba77d;
+    --color-border: #e0ceb8;
 }
 
 * { 
@@ -34,11 +59,11 @@ body {
     margin:0; 
     font-size: var(--Pad16); 
     overflow-x: hidden;
-    background:#fffaf3;
-    color:#392416;
+    background:var(--color-paper);
+    color:var(--color-ink);
 } 
 html { scroll-behavior:smooth; }
-::selection { background:#7d4b2b; color:#fffaf3; }
+::selection { background:#7d4b2b; color:var(--color-paper); }
 *:focus-visible { outline:2px solid #a76d3f; outline-offset:3px; }
 
 /** FONTS  */
@@ -53,13 +78,8 @@ html { scroll-behavior:smooth; }
     font-weight: 400;
     font-style: normal;
 }
-.font--text  {
-    font-family: "Prompt", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.font--normal  {
+.font--text,
+.font--normal {
     font-family: "Prompt", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -68,7 +88,8 @@ html { scroll-behavior:smooth; }
 /** FONTS  */
 
 /** GENERAL STYLES  */
-.d-flexx{
+.d-flex,
+.d-flexx {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,6 +105,11 @@ html { scroll-behavior:smooth; }
     width: min(1180px, calc(100% - 96px));
     margin: 0 auto;
 }
+.text-muted { color: var(--color-ink-soft); }
+.text-accent { color: var(--color-leather-light); }
+.surface-paper { background: var(--color-paper); }
+.surface-card { background: var(--color-paper-card); }
+.border-soft { border-color: var(--color-border); }
 .inner--shell{
     width: 100%;
     max-width: 1520px;
@@ -144,7 +170,7 @@ footer {
     border: 2px solid var(--C800);
     color: var(--C100);
 }
-    .btn-cta:hover{
+    .btn-sec:hover{
         transform: translateY(-3px);
     }
 .btn-sec{

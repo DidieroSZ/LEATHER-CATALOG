@@ -1,10 +1,11 @@
 import { LitElement, css, html } from 'lit';
 import { unsafeCSS } from 'lit';
 import styles from './product-card.css?inline';
+import generalStyles from '../../styles/globalStyles.css?inline';
 
 export class ProductCard extends LitElement {
   static properties = { product: { type: Object }, image: { type: Object }, skin: { type: Object }, category: { type: Object } };
-  static styles = [css`${unsafeCSS(styles)}`];
+  static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
 
   render() {
     const { name, price, colors = [] } = this.product || {};

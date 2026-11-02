@@ -1,2 +1,2 @@
-main { background: #fffaf3; }
+main { background: var(--color-paper); }
 header-view, catalog-view, heritage-view { display: block; scroll-margin-top: 86px; }

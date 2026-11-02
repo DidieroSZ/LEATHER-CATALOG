@@ -1,11 +1,12 @@
 import { LitElement, css, html, nothing } from 'lit';
 import { unsafeCSS } from 'lit';
 import styles from './product-drawer.css?inline';
+import generalStyles from '../../styles/globalStyles.css?inline';
 import { getImage, getSkin, categories } from '../../data/catalog-data.js';
 
 export class ProductDrawer extends LitElement {
   static properties = { product: { type: Object }, open: { type: Boolean } };
-  static styles = [css`${unsafeCSS(styles)}`];
+  static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
   constructor() { super(); this.open = false; this.product = null; this.selectedImageId = null; this.lastFocused = null; this.handleKeydown = this.handleKeydown.bind(this); }
   updated(changed) { if (changed.has('open')) { document.body.style.overflow = this.open ? 'hidden' : ''; if (this.open) { this.selectedImageId = this.product?.imageIds[0]; requestAnimationFrame(() => this.renderRoot.querySelector('[data-close]')?.focus()); } else this.lastFocused?.focus(); } }
   disconnectedCallback() { document.body.style.overflow = ''; super.disconnectedCallback(); }

@@ -2,11 +2,12 @@ import { LitElement, css, html } from "lit";
 import { unsafeCSS } from "lit";
 import { gsap } from "gsap";
 import styles from "./skin-explorer.css?inline";
+import generalStyles from "../../styles/globalStyles.css?inline";
 import { getSkin, getSkinExplorerImage, products, skinExplorerCategories, skinExplorerDetails } from "../../data/catalog-data.js";
 
 export class SkinExplorer extends LitElement {
   static properties = { activeCategoryId: { type: String }, activeSkinId: { type: String } };
-  static styles = [css`${unsafeCSS(styles)}`];
+  static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
   constructor() { super(); this.activeCategoryId = skinExplorerCategories[0].id; this.activeSkinId = skinExplorerCategories[0].skinIds[0]; }
   get activeCategory() { return skinExplorerCategories.find(({ id }) => id === this.activeCategoryId); }
   get visibleSkinIds() { return this.activeCategory?.skinIds ?? []; }

@@ -1,6 +1,7 @@
 import { LitElement, css, html, nothing } from 'lit';
 import { unsafeCSS } from 'lit';
 import styles from './nav-component.css?inline';
+import generalStyles from '../../styles/globalStyles.css?inline';
 
 const steps = [
   { id: 'inicio', number: '01', label: 'Explora', name: 'Inicio' },
@@ -12,7 +13,7 @@ const steps = [
 
 export class NavComponent extends LitElement {
   static properties = { activeId: { type: String } };
-  static styles = [css`${unsafeCSS(styles)}`];
+  static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
   constructor() {
     super();
     this.activeId = 'inicio';
