@@ -38,27 +38,21 @@
 }
 
 .hero-copy p {
-    font:
-        600 0.6rem/1 Arial,
-        sans-serif;
-    letter-spacing: 0.2em;
+    font: 600 var(--type-label)/1.4 var(--font-body);
+    letter-spacing: var(--tracking-label);
     margin: 0 0 19px;
     color: #f7d9b7;
 }
 
 .hero-copy h1 {
-    font:
-        400 clamp(3rem, 7vw, 6.4rem)/0.9 Georgia,
-        serif;
-    letter-spacing: -0.045em;
+    font: 400 var(--type-hero)/.94 var(--font-display);
+    letter-spacing: var(--tracking-display);
     margin: 0 0 15px;
 }
 
 .hero-copy span {
     display: block;
-    font:
-        400 clamp(1rem, 1.8vw, 1.35rem)/1.4 Arial,
-        sans-serif;
+    font: 400 clamp(1rem, 1.5vw, 1.2rem)/1.5 var(--font-body);
     margin: 0 0 29px;
 }
 
@@ -70,9 +64,7 @@
     color: #fff;
     padding: 14px 18px;
     text-decoration: none;
-    font:
-        600 0.75rem Arial,
-        sans-serif;
+    font: 600 var(--type-body-small)/1.3 var(--font-body);
     letter-spacing: 0.02em;
     transition:
         background 0.2s,

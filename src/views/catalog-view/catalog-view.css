@@ -15,10 +15,8 @@
 }
 
 .rule {
-    font:
-        600 0.62rem/1 Arial,
-        sans-serif;
-    letter-spacing: 0.25em;
+    font: 600 var(--type-label)/1.4 var(--font-body);
+    letter-spacing: .18em;
     color: #aa8058;
     margin: 0 0 12px;
 }
@@ -34,18 +32,14 @@
 }
 
 h2 {
-    font:
-        400 clamp(2.2rem, 4vw, 3.5rem)/1 Georgia,
-        serif;
+    font: 400 var(--type-h2)/1.08 var(--font-display);
     margin: 0;
 }
 
 .intro {
     margin: 14px auto 0;
     color: #77563c;
-    font:
-        400 0.84rem/1.55 Arial,
-        sans-serif;
+    font: 400 var(--type-body-small)/1.6 var(--font-body);
 }
 
 .filters {
@@ -64,10 +58,8 @@ h2 {
 .filter-group>span {
     width: 66px;
     color: var(--color-leather-light);
-    font:
-        600 0.55rem Arial,
-        sans-serif;
-    letter-spacing: 0.14em;
+    font: 600 var(--type-label)/1.35 var(--font-body);
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
 }
 
@@ -84,9 +76,7 @@ h2 {
     min-height: var(--touch-target);
     padding: 8px 14px;
     color: #62422b;
-    font:
-        500 0.67rem Arial,
-        sans-serif;
+    font: 500 .78rem/1.35 var(--font-body);
     cursor: pointer;
 }
 
@@ -117,9 +107,7 @@ h2 {
     padding: 14px 0;
     margin-bottom: 17px;
     color: #72513a;
-    font:
-        400 0.68rem Arial,
-        sans-serif;
+    font: 400 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .chips {
@@ -135,9 +123,7 @@ h2 {
     min-height: 40px;
     padding: 7px 12px;
     color: #563921;
-    font:
-        500 0.63rem Arial,
-        sans-serif;
+    font: 500 .78rem/1.35 var(--font-body);
     cursor: pointer;
 }
 
@@ -165,17 +151,13 @@ h2 {
 }
 
 .empty h3 {
-    font:
-        400 1.45rem Georgia,
-        serif;
+    font: 400 var(--type-h3)/1.2 var(--font-display);
     margin: 0;
 }
 
 .empty p {
     color: #795b42;
-    font:
-        400 0.78rem Arial,
-        sans-serif;
+    font: 400 var(--type-body-small)/1.6 var(--font-body);
 }
 
 .empty button {
@@ -183,9 +165,7 @@ h2 {
     background: var(--color-leather);
     padding: 10px 15px;
     color: #fff;
-    font:
-        600 0.65rem Arial,
-        sans-serif;
+    font: 600 .78rem/1.35 var(--font-body);
     cursor: pointer;
 }
 
@@ -260,5 +240,16 @@ h2 {
 
     .grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rule {
+        font-size: .64rem;
+        letter-spacing: .1em;
+    }
+
+    .rule::before,
+    .rule::after {
+        width: 12px;
+        margin: 0 5px;
     }
 }

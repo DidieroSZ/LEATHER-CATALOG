@@ -99,7 +99,7 @@ export class NavComponent extends LitElement {
     this.pendingScrollTimer = setTimeout(() => this.handleScrollEnd(), 3000);
   }
   updated(changed) {
-    if (changed.has('activeId') && matchMedia('(max-width: 760px)').matches) this.renderRoot.querySelector(`[data-step="${this.activeId}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    if (changed.has('activeId') && matchMedia('(max-width: 900px)').matches) this.renderRoot.querySelector(`[data-step="${this.activeId}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
   render() { return html`<nav aria-label="Secciones de Casa Loram"><div class="steps">${steps.map((step) => html`<a class="step ${this.activeId === step.id ? 'is-active' : ''}" data-step="${step.id}" href="#${step.id}" @click=${(event) => this.navigate(event, step.id)} aria-current=${this.activeId === step.id ? 'location' : nothing}><span class="number">${step.number}</span><span class="label">${step.label}</span><strong>${step.name}</strong></a>`)}</div></nav>`; }
 }

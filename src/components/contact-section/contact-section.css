@@ -32,8 +32,8 @@
 .location-eyebrow {
   margin: 0 0 13px;
   color: #9a704d;
-  font: 600 .68rem/1.4 Arial, sans-serif;
-  letter-spacing: .2em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
@@ -41,8 +41,8 @@
   max-width: 520px;
   margin: 0;
   color: #2e1e13;
-  font: 400 clamp(2.2rem, 4.2vw, 3.7rem)/1.02 Georgia, serif;
-  letter-spacing: -.035em;
+  font: 400 var(--type-h1)/1.08 var(--font-display);
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
@@ -50,7 +50,7 @@
   max-width: 510px;
   margin: 17px 0 25px;
   color: #705640;
-  font: 400 .86rem/1.7 Arial, sans-serif;
+  font: 400 var(--type-body)/1.65 var(--font-body);
 }
 
 .contact-methods {
@@ -103,14 +103,14 @@
 
 .method-copy small {
   color: #9b8064;
-  font: 600 .62rem/1.4 Arial, sans-serif;
-  letter-spacing: .12em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .method-copy strong {
   overflow-wrap: anywhere;
-  font: 500 .82rem/1.4 Arial, sans-serif;
+  font: 500 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .whatsapp-action {
@@ -124,8 +124,8 @@
   border: 1px solid #633d20;
   color: #fff7ec;
   background: #633d20;
-  font: 600 .65rem/1.3 Arial, sans-serif;
-  letter-spacing: .1em;
+  font: 600 .72rem/1.35 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
@@ -170,8 +170,8 @@
 }
 
 .contact-hours strong {
-  font: 600 .64rem/1.4 Arial, sans-serif;
-  letter-spacing: .12em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
@@ -181,7 +181,7 @@
   gap: 4px 18px;
   margin: 0;
   color: #705640;
-  font: 400 .75rem/1.5 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.55 var(--font-body);
 }
 
 .location-card {
@@ -203,19 +203,19 @@
 
 .location-eyebrow {
   margin-bottom: 7px;
-  font-size: .55rem;
+  font-size: var(--type-label);
 }
 
 .location-heading h3 {
   margin: 0;
   color: #362418;
-  font: 400 1.45rem/1.2 Georgia, serif;
+  font: 400 var(--type-h3)/1.25 var(--font-display);
 }
 
 .location-heading p:not(.location-eyebrow) {
   margin: 6px 0 0;
   color: #846d56;
-  font: 400 .75rem/1.5 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .directions-link {
@@ -277,19 +277,19 @@
 
 .map-pending strong {
   max-width: 320px;
-  font: 400 1.15rem/1.35 Georgia, serif;
+  font: 400 var(--type-h3)/1.35 var(--font-display);
 }
 
 .map-pending > span:last-child {
   max-width: 310px;
   color: #806d59;
-  font: 400 .74rem/1.55 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.55 var(--font-body);
 }
 
 .map-note {
   margin: 13px 0 0;
   color: #90785e;
-  font: 400 .72rem/1.5 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .directions-button {
@@ -302,8 +302,8 @@
   padding: 0 15px;
   color: #694a2c;
   border: 1px solid #d7c1a5;
-  font: 600 .62rem/1.3 Arial, sans-serif;
-  letter-spacing: .08em;
+  font: 600 var(--type-label)/1.35 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color .2s ease;
@@ -320,7 +320,7 @@
   }
 
   .contact-information h2 {
-    font-size: clamp(2.15rem, 4vw, 3rem);
+    font-size: clamp(2.1rem, 4vw, 2.85rem);
   }
 
   .map-container,
@@ -345,7 +345,7 @@
   }
 
   .contact-information h2 {
-    font-size: clamp(2.25rem, 9vw, 3.2rem);
+    font-size: clamp(2rem, 8.2vw, 2.8rem);
   }
 
   .location-card {

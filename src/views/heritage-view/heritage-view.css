@@ -20,13 +20,13 @@
 
 .brands h2 {
   margin: 0;
-  font: 400 clamp(2.05rem, 4vw, 3.3rem)/1 Georgia, serif;
+  font: 400 var(--type-h2)/1.08 var(--font-display);
 }
 
 .brands > p {
   margin: 11px 0 34px;
   color: #795638;
-  font: 400 .71rem Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.55 var(--font-body);
 }
 
 .brand-grid {
@@ -50,13 +50,13 @@
 
 .brand h3 {
   margin: 11px 12px 4px;
-  font: 400 1rem Georgia, serif;
+  font: 400 var(--type-h3)/1.25 var(--font-display);
 }
 
 .brand span {
   margin: 0 12px;
   color: #956b4a;
-  font: 500 .61rem Arial, sans-serif;
+  font: 500 var(--type-body-small)/1.5 var(--font-body);
 }
 
 @media (max-width: 700px) {

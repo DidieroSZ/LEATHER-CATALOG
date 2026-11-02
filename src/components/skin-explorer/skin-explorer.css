@@ -16,14 +16,14 @@
 .explorer > header p {
   margin: 0 0 11px;
   color: var(--color-leather-accent);
-  font: 600 .58rem Arial, sans-serif;
+  font: 600 var(--type-label)/1.4 var(--font-body);
   letter-spacing: .2em;
   text-transform: uppercase;
 }
 
 .explorer > header h2 {
   margin: 0;
-  font: 400 clamp(2.2rem, 4vw, 3.8rem)/1 Georgia, serif;
+  font: 400 var(--type-h2)/1.08 var(--font-display);
 }
 
 .layout {
@@ -48,15 +48,15 @@
 .tab-copy span,
 .index {
   color: var(--color-leather-accent);
-  font: 600 .55rem Arial, sans-serif;
-  letter-spacing: .16em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .tab-copy p {
   margin: 8px 0 0;
   color: #d4bea4;
-  font: 400 .72rem/1.45 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .tabs button {
@@ -67,7 +67,7 @@
   color: #f3e8da;
   background: transparent;
   text-align: left;
-  font: 400 1rem Georgia, serif;
+  font: 400 var(--type-body-small)/1.35 var(--font-display);
   cursor: pointer;
   transition: background-color .2s ease, color .2s ease;
 }
@@ -102,12 +102,12 @@
 
 .info h3 {
   margin: 8px 0 13px;
-  font: 400 clamp(1.7rem, 2.2vw, 2.1rem)/1.05 Georgia, serif;
+  font: 400 clamp(1.7rem, 2.2vw, 2rem)/1.08 var(--font-display);
 }
 
 .info p {
   color: #eadbc8;
-  font: 400 .78rem/1.6 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.6 var(--font-body);
 }
 
 .info dl {
@@ -120,15 +120,15 @@
 .care h4 {
   margin: 0 0 9px;
   color: var(--color-leather-accent);
-  font: 600 .56rem Arial, sans-serif;
-  letter-spacing: .14em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .info dd {
   margin: 0 0 6px;
   color: #f0e4d4;
-  font: 400 .72rem/1.45 Arial, sans-serif;
+  font: 400 var(--type-body-small)/1.5 var(--font-body);
 }
 
 .care {
@@ -139,7 +139,7 @@
 
 .care p {
   margin: 6px 0;
-  font-size: .68rem;
+  font-size: var(--type-body-small);
 }
 
 .care b {
@@ -150,8 +150,8 @@
   display: block;
   margin-top: 18px;
   color: var(--color-leather-accent);
-  font: 600 .57rem/1.5 Arial, sans-serif;
-  letter-spacing: .08em;
+  font: 600 var(--type-label)/1.5 var(--font-body);
+  letter-spacing: .04em;
   text-transform: uppercase;
 }
 
@@ -196,15 +196,15 @@
 .skin-card span {
   display: block;
   padding: 11px 11px 0;
-  font: 400 .95rem/1.2 Georgia, serif;
+  font: 400 var(--type-body-small)/1.3 var(--font-display);
 }
 
 .skin-card small {
   display: block;
   padding: 5px 11px 0;
   color: #cdb99f;
-  font: 600 .48rem/1.4 Arial, sans-serif;
-  letter-spacing: .1em;
+  font: 600 var(--type-label)/1.4 var(--font-body);
+  letter-spacing: .05em;
   text-transform: uppercase;
 }
 
@@ -234,8 +234,8 @@
   color: #fff8ed;
   background: rgba(35, 25, 18, .82);
   content: "Seleccionada";
-  font: 600 .46rem Arial, sans-serif;
-  letter-spacing: .08em;
+  font: 600 .65rem/1.25 var(--font-body);
+  letter-spacing: .04em;
   text-transform: uppercase;
 }
 
@@ -304,7 +304,7 @@
     min-height: 58px;
     border-right: 1px solid rgba(235, 213, 183, .18);
     border-bottom: 0;
-    font-size: .92rem;
+    font-size: var(--type-body-small);
   }
 
   .info > img {

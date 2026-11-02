@@ -29,6 +29,22 @@
     --color-border: #e0ceb8;
     --font-display: Georgia, "Times New Roman", serif;
     --font-body: Arial, Helvetica, sans-serif;
+    --font-editorial: Georgia, "Times New Roman", serif;
+    --type-hero: clamp(3rem, 7vw, 6.4rem);
+    --type-h1: clamp(2.4rem, 5vw, 4.1rem);
+    --type-h2: clamp(2rem, 4vw, 3.5rem);
+    --type-h3: clamp(1.25rem, 2vw, 1.7rem);
+    --type-product-title: clamp(1.8rem, 3vw, 2.15rem);
+    --type-body: clamp(.9rem, .98vw, 1rem);
+    --type-body-small: .82rem;
+    --type-label: .68rem;
+    --type-story: clamp(2.45rem, 4vw, 4.15rem);
+    --type-story-tablet: clamp(2.05rem, 4.1vw, 3.25rem);
+    --type-story-mobile: clamp(1.65rem, 8.2vw, 2.65rem);
+    --leading-heading: 1.08;
+    --leading-body: 1.6;
+    --tracking-display: -.03em;
+    --tracking-label: .1em;
     --content-max: 1180px;
     --touch-target: 44px;
 }
@@ -46,8 +62,28 @@
     --color-border: #e0ceb8;
     --font-display: Georgia, "Times New Roman", serif;
     --font-body: Arial, Helvetica, sans-serif;
+    --font-editorial: Georgia, "Times New Roman", serif;
+    --type-hero: clamp(3rem, 7vw, 6.4rem);
+    --type-h1: clamp(2.4rem, 5vw, 4.1rem);
+    --type-h2: clamp(2rem, 4vw, 3.5rem);
+    --type-h3: clamp(1.25rem, 2vw, 1.7rem);
+    --type-product-title: clamp(1.8rem, 3vw, 2.15rem);
+    --type-body: clamp(.9rem, .98vw, 1rem);
+    --type-body-small: .82rem;
+    --type-label: .68rem;
+    --type-story: clamp(2.45rem, 4vw, 4.15rem);
+    --type-story-tablet: clamp(2.05rem, 4.1vw, 3.25rem);
+    --type-story-mobile: clamp(1.65rem, 8.2vw, 2.65rem);
+    --leading-heading: 1.08;
+    --leading-body: 1.6;
+    --tracking-display: -.03em;
+    --tracking-label: .1em;
     --content-max: 1180px;
     --touch-target: 44px;
+    font-family: var(--font-body);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-ink);
 }
 
 * { 
@@ -142,11 +178,10 @@ footer {
 
     text-transform: uppercase;
     color: var(--C100);
-    font-size: var(--Pad16);
-    font-family: "Commissioner", sans-serif;
-    font-optical-sizing: auto;
+    font-size: var(--type-body-small);
+    font-family: var(--font-body);
     font-weight: 400;
-    line-height: 1cap;
+    line-height: 1.2;
 }
     .btn-gen::before {
         content: "";
