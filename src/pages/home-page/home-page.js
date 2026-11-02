@@ -12,6 +12,8 @@ import '../../components/nav-component/nav-component.js';
 
 /* --- VIEWS --- */
 import '../../views/header-view/header-view.js';
+import '../../views/catalog-view/catalog-view.js';
+import '../../views/heritage-view/heritage-view.js';
 /* --- VIEWS --- */
 
 
@@ -23,11 +25,16 @@ export class HomePage extends LitElement {
 
     render() {
         return html`
-            <main id="contenido-principal">
+            <main id="contenido-principal" @navigate-section=${this.handleSectionNavigation}>
                 <nav-component></nav-component>
-                <header-view id="Inicio"></header-view>
+                <header-view id="inicio"></header-view>
+                <catalog-view id="catalogo"></catalog-view>
+                <heritage-view></heritage-view>
             </main>
         `;
+    }
+    handleSectionNavigation(event) {
+        this.renderRoot.querySelector('nav-component')?.navigateTo(event.detail.id);
     }
 }
 customElements.define('home-page', HomePage);

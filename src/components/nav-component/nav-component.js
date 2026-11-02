@@ -1,123 +1,106 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, nothing } from 'lit';
 import { unsafeCSS } from 'lit';
-
-/* --- STYLES --- */
+import styles from './nav-component.css?inline';
 import generalStyles from '../../styles/globalStyles.css?inline';
-import innerStyles from './nav-component.css?inline';
-/* --- STYLES --- */
 
-/* --- ICONS --- */
-import { hydrateIcons } from '../../utils/icons.js';
-/* --- ICONS --- */
-
-/* --- ASSETS --- */
-import logo from '../../assets/CasaLoram.png';
-/* --- ASSETS --- */
+const steps = [
+  { id: 'inicio', number: '01', label: 'Explora', name: 'Inicio' },
+  { id: 'catalogo', number: '02', label: 'Selecciona', name: 'Catálogo' },
+  { id: 'pieles', number: '03', label: 'Conoce', name: 'Pieles' },
+  { id: 'historia', number: '04', label: 'Conoce', name: 'Historia' },
+  { id: 'marcas', number: '05', label: 'Descubre', name: 'Marcas' },
+  { id: 'contacto', number: '06', label: 'Conecta', name: 'Contacto' },
+  { id: 'nosotros', number: '07', label: 'Identidad', name: 'Nosotros' },
+];
 
 export class NavComponent extends LitElement {
+  static properties = { activeId: { type: String } };
+  static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
+  constructor() {
+    super();
+    this.activeId = 'inicio';
+    this.observer = null;
+    this.pendingTargetId = null;
+    this.observerRetryTimer = null;
+    this.pendingScrollTimer = null;
+    this.handleScrollEnd = this.handleScrollEnd.bind(this);
+    this.cancelPendingNavigation = this.cancelPendingNavigation.bind(this);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    requestAnimationFrame(() => this.connectSectionObserver());
+    window.addEventListener('scrollend', this.handleScrollEnd);
+    window.addEventListener('wheel', this.cancelPendingNavigation, { passive: true });
+    window.addEventListener('touchstart', this.cancelPendingNavigation, { passive: true });
+  }
+  disconnectedCallback() {
+    this.observer?.disconnect();
+    clearTimeout(this.observerRetryTimer);
+    clearTimeout(this.pendingScrollTimer);
+    window.removeEventListener('scrollend', this.handleScrollEnd);
+    window.removeEventListener('wheel', this.cancelPendingNavigation);
+    window.removeEventListener('touchstart', this.cancelPendingNavigation);
+    super.disconnectedCallback();
+  }
+  getSection(id) {
+    const pageRoot = this.getRootNode();
+    if (id === 'inicio' || id === 'catalogo') return pageRoot.querySelector(`#${id}`);
 
-    static properties = {
-        menuOpen: { type: Boolean },
-    };
-
-    constructor() {
-        super();
-        this.menuOpen = false;
-        this.handleKeydown = this.handleKeydown.bind(this);
-        this.handleResize = this.handleResize.bind(this);
+    const heritageRoot = pageRoot.querySelector('heritage-view')?.shadowRoot;
+    if (id === 'nosotros') {
+      return heritageRoot?.querySelector('footer-component')?.shadowRoot?.querySelector(`#${id}`);
     }
 
-    connectedCallback() {
-        super.connectedCallback();
-        window.addEventListener('keydown', this.handleKeydown);
-        window.addEventListener('resize', this.handleResize);
+    return heritageRoot?.querySelector(`#${id}`);
+  }
+  connectSectionObserver() {
+    const sections = steps.map(({ id }) => this.getSection(id)).filter(Boolean);
+    if (sections.length !== steps.length) {
+      clearTimeout(this.observerRetryTimer);
+      this.observerRetryTimer = setTimeout(() => this.connectSectionObserver(), 50);
+      return;
     }
-
-    disconnectedCallback() {
-        window.removeEventListener('keydown', this.handleKeydown);
-        window.removeEventListener('resize', this.handleResize);
-        super.disconnectedCallback();
-    }
-
-    static styles = [
-        css`${unsafeCSS(generalStyles)}`,
-        css`${unsafeCSS(innerStyles)}`,
-    ];
-
-    firstUpdated() { 
-        hydrateIcons(this.renderRoot); 
-    }
-    updated() { 
-        hydrateIcons(this.renderRoot); 
-    }
-        
-    render() {
-        return html`
-            <nav class="nav--container d-flexx d-row" aria-label="Navegación principal">
-                <div class="inner--shell grid--nav">
-
-                    <div class="item--nav large--item d-flexx d-row">
-                        <button class="btn-gen">Inicio</button>
-                        <button class="btn-gen btn-sec">Productos</button>
-                        <button class="btn-gen btn-sec">Pieles</button>
-                        <button class="btn-gen btn-sec">Marcas</button>
-                        <button class="btn-gen btn-sec">Contacto</button>
-                    </div>
-
-                    <div class="item--nav center--item">
-                    
-                        <a class="brand" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
-                            <img src="${logo}" alt="Logo Casa Loram">
-                        </a>
-                    
-                    <!-- 
-                        <a class="brand d-flexx" href="#Inicio" data-target="Inicio" @click=${this.handleNavigation}>
-                            <p class="logo--text font--cursiva">C L</p>
-                        </a>
-                        -->
-                    </div>
-
-                    <div class="item--nav rigth--item d-flexx">
-                        <p class="font--normal">479-103-1689</p>
-                        <button class="btn-gen btn-cta">Catálogo</button>
-                    </div>
-                    
-                </div>
-            
-            </nav>
-        `;
-    };
-
-    handleNavigation(event) {
-        const target = event.currentTarget.dataset.target;
-        this.menuOpen = false;
-
-        this.dispatchEvent(
-            new CustomEvent('navigate-section', {
-                detail: {
-                    target
-                },
-                bubbles: true,
-                composed: true
-            })
-        );
-    }
-
-    toggleMenu() {
-        this.menuOpen = !this.menuOpen;
-    }
-
-    handleKeydown(event) {
-        if (event.key === 'Escape' && this.menuOpen) {
-            this.menuOpen = false;
-        }
-    }
-
-    handleResize() {
-        if (window.innerWidth > 800 && this.menuOpen) {
-            this.menuOpen = false;
-        }
-    }
-
+    this.observer?.disconnect();
+    this.observer = new IntersectionObserver(() => {
+      const nextId = this.getCurrentSectionId(sections);
+      if (!nextId) return;
+      if (this.pendingTargetId) {
+        if (nextId !== this.pendingTargetId) return;
+        this.finishPendingNavigation();
+      }
+      this.activeId = nextId;
+    }, { rootMargin: '-18% 0px -62% 0px', threshold: [0, .12, .5] });
+    sections.forEach((section) => this.observer.observe(section));
+  }
+  getCurrentSectionId(sections) {
+    const activationLine = this.offsetHeight + (window.innerHeight * .18);
+    const positions = sections.map((section) => ({ id: section.id, top: section.getBoundingClientRect().top }));
+    const passed = positions.filter(({ top }) => top <= activationLine);
+    return (passed.at(-1) ?? positions[0])?.id;
+  }
+  finishPendingNavigation() {
+    this.pendingTargetId = null;
+    clearTimeout(this.pendingScrollTimer);
+  }
+  handleScrollEnd() {
+    if (!this.pendingTargetId) return;
+    this.finishPendingNavigation();
+    const sections = steps.map(({ id }) => this.getSection(id)).filter(Boolean);
+    this.activeId = this.getCurrentSectionId(sections) ?? this.activeId;
+  }
+  cancelPendingNavigation() { this.finishPendingNavigation(); }
+  navigate(event, id) { event.preventDefault(); this.navigateTo(id); }
+  navigateTo(id) {
+    const section = this.getSection(id); if (!section) return;
+    this.activeId = id;
+    this.pendingTargetId = id;
+    clearTimeout(this.pendingScrollTimer);
+    section.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    this.pendingScrollTimer = setTimeout(() => this.handleScrollEnd(), 3000);
+  }
+  updated(changed) {
+    if (changed.has('activeId') && matchMedia('(max-width: 900px)').matches) this.renderRoot.querySelector(`[data-step="${this.activeId}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+  render() { return html`<nav aria-label="Secciones de Casa Loram"><div class="steps">${steps.map((step) => html`<a class="step ${this.activeId === step.id ? 'is-active' : ''}" data-step="${step.id}" href="#${step.id}" @click=${(event) => this.navigate(event, step.id)} aria-current=${this.activeId === step.id ? 'location' : nothing}><span class="number">${step.number}</span><span class="label">${step.label}</span><strong>${step.name}</strong></a>`)}</div></nav>`; }
 }
 customElements.define('nav-component', NavComponent);

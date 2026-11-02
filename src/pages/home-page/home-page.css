@@ -1,4 +1,2 @@
-main {
-    overflow: hidden;
-    background: var(--Paper)
-}
+main { background: var(--color-paper); }
+header-view, catalog-view, heritage-view { display: block; scroll-margin-top: 86px; }
