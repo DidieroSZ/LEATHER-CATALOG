@@ -1,3 +1,5 @@
+import { storeSchedule } from './store-hours.js';
+
 export const footerConfig = {
   brand: {
     name: 'Casa Loram',
@@ -25,7 +27,7 @@ export const footerConfig = {
     googleMapsUrl: '',
     googleMapsEmbedUrl: '',
   },
-  schedule: [{ days: 'Lunes a viernes', hours: '10:00 a 19:00' }],
+  schedule: storeSchedule,
   benefits: [
     {
       icon: 'badge-check',
