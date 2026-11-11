@@ -55,7 +55,9 @@ export class HeritageView extends LitElement {
     return html`<section id="pieles" class="textures">
         <skin-explorer></skin-explorer>
       </section>
+      <!-- 
       <story-section id="historia"></story-section>
+      -->
       <section id="marcas" class="brands page-shell">
         <h2>Marcas disponibles</h2>
         <p>

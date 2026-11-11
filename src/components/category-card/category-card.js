@@ -4,9 +4,10 @@ import styles from './category-card.css?inline';
 import generalStyles from '../../styles/globalStyles.css?inline';
 
 export class CategoryCard extends LitElement {
-  static properties = { category: { type: Object }, image: { type: Object }, skins: { type: Array } };
+  static properties = { category: { type: Object }, image: { type: Object }, selected: { type: Boolean, reflect: true } };
   static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
+  constructor() { super(); this.selected = false; }
   choose() { this.dispatchEvent(new CustomEvent('select-category', { detail: { id: this.category.id }, bubbles: true, composed: true })); }
-  render() { return html`<article class="category-card"><img src="${this.image?.src}" alt="${this.image?.alt}" loading="lazy" /><div><h3>${this.category?.name}</h3><p>${this.category?.description}</p><small>${this.skins?.join(' · ')}</small><button @click=${this.choose}>Explorar colección <span>→</span></button></div></article>`; }
+  render() { return html`<button class="category-card ${this.selected ? 'selected' : ''}" aria-pressed=${this.selected} aria-label="Filtrar por ${this.category?.name}" @click=${this.choose}><img src="${this.image?.src}" alt="" loading="lazy" /><span>${this.category?.name}</span></button>`; }
 }
 customElements.define('category-card', CategoryCard);
