@@ -1,127 +1,15 @@
-:host {
-  display: block;
-}
-
-.card {
-  height: 100%;
-  overflow: hidden;
-  border: 1px solid #e5d8c7;
-  border-radius: 6px;
-  background: #fffdfa;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 28px rgba(54, 31, 16, .13);
-}
-
-.product-action {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-}
-
-.image-wrap {
-  overflow: hidden;
-  aspect-ratio: 1 / 1.04;
-  background: #e5d5c1;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .45s ease;
-}
-
-.card:hover img {
-  transform: scale(1.045);
-}
-
-.copy {
-  min-height: 126px;
-  padding: 13px 13px 14px;
-}
-
-.copy > p {
-  margin: 0 0 6px;
-  color: #9b704d;
-  font: 600 var(--type-label)/1.35 var(--font-body);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-h3 {
-  margin: 0 0 9px;
-  color: #352215;
-  font: 400 .96rem/1.25 var(--font-display);
-}
-
-.attributes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.attributes span {
-  padding: 4px 7px;
-  border: 1px solid #ddc6a6;
-  border-radius: 20px;
-  color: #9a7148;
-  font: 600 .64rem/1.3 var(--font-body);
-  letter-spacing: .04em;
-  text-transform: none;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 13px;
-}
-
-.footer strong {
-  color: #3b2415;
-  font: 600 .82rem/1.3 var(--font-display);
-}
-
-.footer i {
-  display: flex;
-  gap: 4px;
-}
-
-.footer b {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgba(41, 23, 13, .23);
-  border-radius: 50%;
-}
-
-.product-action:focus-visible {
-  outline: 2px solid #a66d41;
-  outline-offset: -4px;
-}
-
-@media (max-width: 390px) {
-  .copy {
-    padding: 12px 10px;
-  }
-
-  h3 {
-    font-size: .9rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  img {
-    transition: none;
-  }
-}
+:host { display:block; min-width:0; height:100%; }
+.card { height:100%; overflow:hidden; border:1px solid #e1d3c2; border-radius:10px; background:#fffdf9; box-shadow:0 2px 8px rgba(55,35,20,.035); }
+.product-action { display:flex; width:100%; height:100%; flex-direction:column; padding:10px; border:0; border-radius:inherit; color:inherit; background:transparent; text-align:left; cursor:pointer; }
+.image-wrap { position:relative; display:grid; width:100%; overflow:hidden; aspect-ratio:1.14/1; place-items:center; border-radius:6px; background:#f3ebdf; }
+.product-image { display:block; width:100%; height:100%; object-fit:contain; object-position:center; }
+.badge { position:absolute; top:10px; left:10px; max-width:calc(100% - 20px); padding:6px 9px; border:1px solid rgba(75,46,30,.18); border-radius:20px; color:#4b2e1e; background:rgba(247,239,227,.96); font:600 .61rem/1.2 var(--font-body); letter-spacing:.05em; text-transform:uppercase; }
+.copy { display:flex; min-height:128px; flex:1; flex-direction:column; align-items:flex-start; padding:14px 5px 5px; }
+.category { margin-bottom:6px; color:#9a7654; font:600 .62rem/1.3 var(--font-body); letter-spacing:.12em; text-transform:uppercase; }
+.name { display:-webkit-box; min-height:2.4em; overflow:hidden; color:#352215; font:400 1.05rem/1.2 var(--font-display); -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.description { display:-webkit-box; min-height:1.5em; overflow:hidden; margin-top:7px; color:#765a42; font:400 .72rem/1.45 var(--font-body); -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.footer { display:flex; width:100%; align-items:flex-end; justify-content:space-between; gap:8px; margin-top:auto; padding-top:13px; }
+.price { color:#4b2e1e; font:600 .96rem/1.2 var(--font-display); }
+.product-action:focus-visible { outline:2px solid #4b2e1e; outline-offset:-3px; }
+@media (max-width:620px) { .product-action { padding:8px; } .image-wrap { aspect-ratio:.98/1; } .copy { min-height:122px; padding-top:12px; } .name { font-size:.98rem; } }
+@media (max-width:390px) { .description { font-size:.68rem; } .price { font-size:.88rem; } }
