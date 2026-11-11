@@ -265,6 +265,14 @@ export const products = [
 export const getImage = (id) => images.find((image) => image.id === id);
 export const getSkin = (id) => skins.find((skin) => skin.id === id);
 
+// Optional commercial attributes. Keep these lists as the shared source of
+// truth; product filters are still populated exclusively from real products.
+export const leatherGroups = {
+  common: ['Res', 'Venado', 'Cuello de toro', 'Pelo de vaca'],
+  exotic: ['Pitón', 'Cocodrilo (panza)', 'Cocodrilo (cola)', 'Avestruz', 'Pescado', 'Jirafa'],
+  beltExotic: ['Pitón', 'Cocodrilo (panza)', 'Cocodrilo (cola)', 'Avestruz', 'Pescado'],
+};
+
 export const skinExplorerCategories = [
   { id: "exoticas", name: "Pieles exóticas", description: "Texturas naturales de presencia singular.", skinIds: ["cocodrilo", "avestruz", "piton"], order: 1, active: true },
   { id: "bovinas", name: "Pieles bovinas", description: "Materiales clásicos elegidos para la colección.", skinIds: ["ternera", "novillo"], order: 2, active: true },

@@ -8,12 +8,13 @@ export class ProductCard extends LitElement {
   static styles = [css`${unsafeCSS(generalStyles)}`, css`${unsafeCSS(styles)}`];
 
   render() {
-    const { name, price, colors = [] } = this.product || {};
+    const { name, price, colors = [], brand, material, quality, style, last, leather } = this.product || {};
+    const details = [brand, material || this.skin?.name, quality, style || last, leather].filter(Boolean);
     return html`
       <article class="card">
         <button class="product-action" @click=${this.openDetails} aria-label="Consultar ${name}">
           <div class="image-wrap"><img src="${this.image?.src}" alt="${this.image?.alt}" loading="lazy" /></div>
-          <div class="copy"><p>${this.category?.name}</p><h3>${name}</h3><span>${this.skin?.name}</span><div class="footer"><strong>${new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(price)}</strong><i>${colors.map((color) => html`<b style="background:${color}"></b>`)}</i></div></div>
+          <div class="copy"><p>${this.category?.name}</p><h3>${name}</h3>${details.length ? html`<div class="attributes">${details.map((detail) => html`<span>${detail}</span>`)}</div>` : ''}<div class="footer"><strong>${new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(price)}</strong><i aria-label="Variantes de color">${colors.map((color) => html`<b style="background:${color}"></b>`)}</i></div></div>
         </button>
       </article>`;
   }

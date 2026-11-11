@@ -10,6 +10,7 @@ import {
   products,
   skins,
 } from "../../data/catalog-data.js";
+import { categoryFilters, filterLabels } from "../../data/catalog-config.js";
 import "../../components/category-card/category-card.js";
 import "../../components/product-card/product-card.js";
 import "../../components/catalog-pagination/catalog-pagination.js";
@@ -22,6 +23,7 @@ export class CatalogView extends LitElement {
   static properties = {
     categoryId: { type: String },
     skinId: { type: String },
+    attributeFilters: { state: true },
     page: { type: Number },
     selectedProduct: { type: Object },
     drawerOpen: { type: Boolean },
@@ -36,6 +38,7 @@ export class CatalogView extends LitElement {
     super();
     this.categoryId = "all";
     this.skinId = "all";
+    this.attributeFilters = {};
     this.page = 1;
     this.selectedProduct = null;
     this.drawerOpen = false;
@@ -45,8 +48,23 @@ export class CatalogView extends LitElement {
     return products.filter(
       (product) =>
         (this.categoryId === "all" || product.categoryId === this.categoryId) &&
-        (this.skinId === "all" || product.skinId === this.skinId),
+        (this.skinId === "all" || product.skinId === this.skinId) &&
+        Object.entries(this.attributeFilters).every(([key, values]) => !values.length || values.some((value) => { const actual = this.attributeValue(product, key); return Array.isArray(actual) ? actual.includes(value) : actual === value; })),
     );
+  }
+  attributeValue(product, key) {
+    if (key === 'material' || key === 'leather') return getSkin(product.skinId)?.name;
+    if (key === 'color') return product.color;
+    return product[key];
+  }
+  get attributeFilterGroups() {
+    return (categoryFilters[this.categoryId] || []).map((key) => ({
+      key,
+      values: [...new Set(this.filteredByBase.flatMap((product) => { const value = this.attributeValue(product, key); return Array.isArray(value) ? value : value ? [value] : []; }))],
+    })).filter(({ values }) => values.length);
+  }
+  get filteredByBase() {
+    return products.filter((product) => (this.categoryId === 'all' || product.categoryId === this.categoryId) && (this.skinId === 'all' || product.skinId === this.skinId));
   }
   get totalPages() {
     return Math.max(1, Math.ceil(this.filteredProducts.length / PAGE_SIZE));
@@ -59,21 +77,27 @@ export class CatalogView extends LitElement {
     );
   }
   get availableSkins() {
-    const ids = new Set(products.map(({ skinId }) => skinId));
+    const ids = new Set(this.filteredByBase.map(({ skinId }) => skinId));
     return skins.filter(({ id }) => ids.has(id));
   }
   updateFilters(key, value) {
-    this[key] = value;
+    if (key === 'attribute') {
+      const current = this.attributeFilters[value.key] || [];
+      const next = current.includes(value.value) ? current.filter((item) => item !== value.value) : [...current, value.value];
+      this.attributeFilters = { ...this.attributeFilters, [value.key]: next };
+    } else this[key] = value;
     this.page = 1;
   }
   clearFilters() {
     this.categoryId = "all";
     this.skinId = "all";
+    this.attributeFilters = {};
     this.page = 1;
   }
   selectCategory(event) {
     this.categoryId = event.detail.id;
     this.skinId = "all";
+    this.attributeFilters = {};
     this.page = 1;
     requestAnimationFrame(() =>
       this.renderRoot
@@ -135,6 +159,7 @@ export class CatalogView extends LitElement {
             this.skinId,
             "skinId",
           )}
+          ${this.attributeFilterGroups.map(({ key, values }) => this.renderAttributeFilter(key, values))}
         </div>
         <div class="category-grid" @select-category=${this.selectCategory}>
           ${categories.map((category) => {
@@ -171,7 +196,7 @@ export class CatalogView extends LitElement {
                   >
                     ${activeSkin.name}<span>×</span>
                   </button>`
-                : ""}${activeCategory || activeSkin
+                : ""}${Object.entries(this.attributeFilters).flatMap(([key, values]) => values.map((value) => html`<button @click=${() => this.updateFilters('attribute', { key, value })}>${filterLabels[key] || key}: ${value}<span>×</span></button>`))}${activeCategory || activeSkin || Object.values(this.attributeFilters).some((values) => values.length)
                 ? html`<button class="clear" @click=${this.clearFilters}>
                     Limpiar filtros
                   </button>`
@@ -216,6 +241,9 @@ export class CatalogView extends LitElement {
         .open=${this.drawerOpen}
         @close-drawer=${this.closeDrawer}
       ></product-drawer>`;
+  }
+  renderAttributeFilter(key, values) {
+    return html`<div class="filter-group"><span>${filterLabels[key] || key}</span><div role="group" aria-label="Filtrar por ${filterLabels[key] || key}">${values.map((value) => { const selected = (this.attributeFilters[key] || []).includes(value); return html`<button class=${selected ? 'active' : ''} aria-pressed=${selected} @click=${() => this.updateFilters('attribute', { key, value })}>${value}</button>`; })}</div></div>`;
   }
 }
 customElements.define("catalog-view", CatalogView);

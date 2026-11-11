@@ -63,14 +63,20 @@ h3 {
   font: 400 .96rem/1.25 var(--font-display);
 }
 
-span {
+.attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.attributes span {
   padding: 4px 7px;
   border: 1px solid #ddc6a6;
   border-radius: 20px;
   color: #9a7148;
   font: 600 .64rem/1.3 var(--font-body);
   letter-spacing: .04em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .footer {
